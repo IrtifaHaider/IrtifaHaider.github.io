@@ -75,6 +75,15 @@
     .timeline .t-item ul {
       margin-top: 6px;
     }
+    /* About text + chips inside the hero, left of the photo */
+    .hero-text .hero-about {
+      margin-top: 20px;
+      max-width: 640px;
+      line-height: 1.7;
+      opacity: 0.85;
+    }
+    .hero-text .about-label { margin-top: 20px; }
+    .hero-text .chips { max-width: 640px; }
   </style>
 </head>
 <body>
@@ -103,12 +112,37 @@
 
   <main id="top">
 
-    <!-- ============ HERO ============ -->
-    <section class="hero wrap">
+    <!-- ============ HERO + ABOUT ============ -->
+    <section id="about" class="hero wrap">
       <div class="hero-text">
         <p class="eyebrow">Hi, I'm</p>
         <h1>Irtifa Haider</h1>
         <p class="role">MSc Student in Computer Science and Engineering<br>Jahangirnagar University, Bangladesh</p>
+
+        <p class="hero-about">
+          I am an MSc student and graduate researcher at Jahangirnagar University working on Natural
+          Language Processing, with a focus on Bangla, a language that still has far fewer ready-made
+          NLP resources than English. My published work studies how text optimization and
+          transformer-based models can improve Bangla text summarization. My current research
+          asks whether large language models behave reliably in Bangla, in particular whether
+          they change medical advice because a patient gives new clinical information or only
+          because the patient pushes harder. I am also interested in information retrieval, graph mining and community detection
+          in social networks.
+        </p>
+
+        <p class="about-label">Research interests</p>
+        <div class="chips" aria-label="Research interests">
+          <span>Large Language Models</span>
+          <span>Trustworthy NLP</span>
+          <span>LLM Reliability</span>
+          <span>Low-Resource Languages</span>
+          <span>Natural Language Processing</span>
+          <span>Text Summarization</span>
+          <span>Graph Mining</span>
+          <span>Social Network Analysis</span>
+          <span>Information Retrieval</span>
+          <span>Machine Learning</span>
+        </div>
       </div>
 
       <div class="hero-photo">
@@ -123,40 +157,6 @@
           <li><a class="btn" href="https://scholar.google.com/citations?user=NlQSgsYAAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener">Google Scholar</a></li>
           <li><a class="btn" href="https://www.linkedin.com/in/irtifa-haider-ahona-1924821b0/" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
-      </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section id="about" class="wrap section">
-      <div class="section-head">
-        <h2>About</h2>
-      </div>
-      <div class="about">
-        <p>
-          I am an MSc student and graduate researcher at Jahangirnagar University working on Natural
-          Language Processing, with a focus on Bangla, a language that still has far fewer ready-made
-          NLP resources than English. My published work studies how text optimization and
-          transformer-based models can improve Bangla text summarization. My current research
-          asks whether large language models behave reliably in Bangla, in particular whether
-          they change medical advice because a patient gives new clinical information or only
-          because the patient pushes harder. I am also interested in information retrieval, graph mining and community detection
-          in social networks.
-        </p>
-
-        <p class="about-label">Research interests</p>
-
-        <div class="chips" aria-label="Research interests">
-          <span>Large Language Models</span>
-          <span>Trustworthy NLP</span>
-          <span>LLM Reliability</span>
-          <span>Low-Resource Languages</span>
-          <span>Natural Language Processing</span>
-          <span>Text Summarization</span>
-          <span>Graph Mining</span>
-          <span>Social Network Analysis</span>
-          <span>Information Retrieval</span>
-          <span>Machine Learning</span>
-        </div>
       </div>
     </section>
 
@@ -224,7 +224,7 @@
 
       <article class="pub-item">
         <p>
-          <strong>Irtifa Haider</strong>, S. Alam, M. T. Hossan, M. M. Anwar, T. T. Aurpa.
+          <strong> Haider, I. </strong>, Alam, S., Hossan, M. T., Anwar, M. M., & Aurpa, T. T. (2025).
           A Comprehensive Text Optimization Approach to Bangla Summarization.
           <em>Proceedings of the Second Bangla Language Processing Workshop (BLP), co-located with the 14th International Joint Conference on Natural Language Processing (IJCNLP–AACL)</em>, 2025.
           <a class="venue-link" href="https://aclanthology.org/2025.banglalp-1.13/" target="_blank" rel="noopener">BLP 2025</a>
@@ -233,7 +233,7 @@
       </article>
     </section>
 
-    <!-- ============ RESEARCH WORKS ============ -->
+    <!-- ============ RESEARCH EXPERIENCE ============ -->
     <section id="research" class="wrap section">
       <div class="section-head">
         <h2>Research Experience</h2>
@@ -246,26 +246,15 @@
           <p>Jahangirnagar University, supervised by <a href="https://sites.google.com/juniv.edu/mdmusfiqueanwar/ju-cidl-lab" target="_blank" rel="noopener">Dr. Md. Musfique Anwar</a>. Working on the reliability of multilingual LLMs in Bangla, with a focus on medical dialogue.</p>
         </div>
       </div>
-      </section>
+    </section>
 
-      <section id="research" class="wrap section">
+    <!-- ============ RESEARCH WORKS ============ -->
+    <section id="research-works" class="wrap section">
       <div class="section-head">
         <h2>Research Works</h2>
       </div>
 
       <div class="rx-list">
-
-        <article class="rx">
-          <h3>Insist-BN: Do LLMs Change Clinical Advice for the Right Reason?</h3>
-          <p class="rx-meta">
-            <span class="status wip">Ongoing research · M.Sc. research</span>
-            <span>Supervised by <b>Dr. Md. Musfique Anwar</b></span>
-          </p>
-          <ul class="rx-points">
-            <li>Building a benchmark from real Bangla doctor–patient calls (DocTalkBN) in which a patient's pushback varies independently in content (a new clinical fact, no new fact, or an irrelevant fact) and in wording (neutral, emotional or insistent).</li>
-            <li>Measures whether LLMs update their clinical advice because of new information rather than pressure alone.</li>
-          </ul>
-        </article>
 
         <article class="rx">
           <h3>A Comprehensive Text Optimization Approach to Bangla Summarization</h3>
@@ -283,6 +272,18 @@
               Paper
             </a>
           </div>
+        </article>
+
+        <article class="rx">
+          <h3>Insist-BN: Do LLMs Change Clinical Advice for the Right Reason?</h3>
+          <p class="rx-meta">
+            <span class="status wip">Ongoing research · M.Sc. research</span>
+            <span>Supervised by <b>Dr. Md. Musfique Anwar</b></span>
+          </p>
+          <ul class="rx-points">
+            <li>Building a benchmark from real Bangla doctor–patient calls (DocTalkBN) in which a patient's pushback varies independently in content (a new clinical fact, no new fact, or an irrelevant fact) and in wording (neutral, emotional or insistent).</li>
+            <li>Measures whether LLMs update their clinical advice because of new information rather than pressure alone.</li>
+          </ul>
         </article>
 
         <article class="rx">
