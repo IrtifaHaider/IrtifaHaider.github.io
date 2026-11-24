@@ -12,13 +12,67 @@
   <meta property="og:image" content="https://irtifahaider.github.io/images/2.jpg">
   <meta property="og:url" content="https://irtifahaider.github.io/">
   <meta name="twitter:card" content="summary">
-  <!-- Browser-tab icon: your photo (images/2.jpg). For a sharper icon, save a square 256x256 crop as images/favicon.png and point href to it. -->
   <link rel="icon" type="image/jpeg" href="images/2.jpg">
   <link rel="apple-touch-icon" href="images/2.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Small overrides on top of style.css (can be moved into style.css later) -->
+  <style>
+    /* Larger profile photo */
+    .hero-photo img,
+    .hero-photo .photo-fallback {
+      width: 320px;
+      height: 320px;
+    }
+    @media (max-width: 700px) {
+      .hero-photo img,
+      .hero-photo .photo-fallback {
+        width: 240px;
+        height: 240px;
+      }
+    }
+
+    /* Two equal-width cards that fill the row (Education, Volunteer) */
+    .edu {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+    .edu .card {
+      height: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 700px) {
+      .edu { grid-template-columns: 1fr; }
+    }
+
+    /* Vertical line for the timeline, like in Research Works.
+       If the line does not sit under the dots, change "left" below. */
+    .timeline {
+      position: relative;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 9px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: rgba(148, 163, 184, 0.25);
+      z-index: 0;
+    }
+    .timeline .t-item {
+      position: relative;
+      z-index: 1;
+    }
+    .timeline .t-item ul {
+      margin-top: 6px;
+    }
+  </style>
 </head>
 <body>
 
@@ -55,8 +109,7 @@
       </div>
 
       <div class="hero-photo">
-        <!-- Photo file: images/2.jpg. Initials show if the file is missing. -->
-        <img src="images/2.jpg" alt="Portrait of Irtifa Haider" width="260" height="260"
+        <img src="images/2.jpg" alt="Portrait of Irtifa Haider" width="320" height="320"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
         <div class="photo-fallback" aria-hidden="true">IH</div>
 
@@ -76,15 +129,14 @@
         <h2>About</h2>
       </div>
       <div class="about">
-        <!-- DRAFT: rewrite in your own words and make the direction specific. -->
         <p>
-         I am an MSc student and graduate researcher at Jahangirnagar University working on Natural 
-          Language Processing, with a focus on Bangla, a language that still has far fewer ready-made 
-          NLP resources than English. My published work studies how text optimization and 
-          transformer-based models can improve Bangla text summarization. My current research 
-          asks whether large language models behave reliably in Bangla, in particular whether 
-          they change medical advice because a patient gives new clinical information or only 
-          because the patient pushes harder. I am also interested in information retrieval, graph mining and community detection 
+          I am an MSc student and graduate researcher at Jahangirnagar University working on Natural
+          Language Processing, with a focus on Bangla, a language that still has far fewer ready-made
+          NLP resources than English. My published work studies how text optimization and
+          transformer-based models can improve Bangla text summarization. My current research
+          asks whether large language models behave reliably in Bangla, in particular whether
+          they change medical advice because a patient gives new clinical information or only
+          because the patient pushes harder. I am also interested in information retrieval, graph mining and community detection
           in social networks.
         </p>
 
@@ -105,23 +157,30 @@
       </div>
     </section>
 
-    <!-- ============ EXPERIENCE ============ -->
+    <!-- ============ WORK EXPERIENCE ============ -->
     <section id="experience" class="wrap section">
       <div class="section-head">
         <h2>Work Experience</h2>
       </div>
-      
+      <div class="timeline">
 
         <div class="t-item">
           <time>Apr 2026 – Jun 2026</time>
           <h3>QA Functional Tester (Intern), <a href="https://www.a1qa.com/" target="_blank" rel="noopener">A1QA</a></h3>
-          <p>Planned and executed test cases (smoke, acceptance and manual testing) and reported defects in Jira.</p>
+          <ul class="rx-points">
+            <li>Worked with various testing types, including smoke, acceptance and manual testing.</li>
+            <li>Designed and executed test cases and performed test planning.</li>
+            <li>Identified bugs and reported defects in Jira with clear documentation and reproduction steps.</li>
+          </ul>
         </div>
 
         <div class="t-item">
           <time>Sep 2024 – Apr 2026</time>
           <h3>Coding Instructor, <a href="https://coderpals.com/mentors" target="_blank" rel="noopener">CoderPals</a></h3>
-          <p>Taught Scratch and Python to children through project-based lessons.</p>
+          <ul class="rx-points">
+            <li>Taught Scratch and Python to children through engaging, game-based and project-based lessons.</li>
+            <li>Simplified programming concepts to build computational thinking, creativity and problem-solving skills.</li>
+          </ul>
         </div>
 
       </div>
@@ -138,6 +197,7 @@
           <time>Sep 2025 – Present</time>
           <h3>MSc in Computer Science and Engineering</h3>
           <p>Jahangirnagar University, Savar, Dhaka, Bangladesh</p>
+          <p>Research: <em>Insist-BN: Do LLMs Change Clinical Advice for the Right Reason?</em> (ongoing)</p>
           <p>Courses: Natural Language Processing, Machine Intelligence and Expert Systems, Network Security, Distributed Database, Advanced Neural Network</p>
         </article>
 
@@ -146,19 +206,19 @@
           <h3>BSc in Computer Science and Engineering</h3>
           <p>Jahangirnagar University, Savar, Dhaka, Bangladesh</p>
           <p>CGPA 3.42/4.00</p>
-          <p>Thesis: <em><a href="https://github.com/IrtifaHaider/Social_Network_Clustering_using_Star_Clustering_Algoritm" target="_blank" rel="noopener">The Star Paradigm: Redefining Social Network Clustering</em></p>
+          <p>Thesis: <em><a href="https://github.com/IrtifaHaider/Social_Network_Clustering_using_Star_Clustering_Algoritm" target="_blank" rel="noopener">The Star Paradigm: Redefining Social Network Clustering</a></em></p>
           <p>Courses: Artificial Intelligence, Machine Learning, Data Mining, Algorithms, Database Systems, Research Project</p>
-          </article>
+        </article>
 
       </div>
     </section>
 
-        <!-- ============ PUBLICATIONS ============ -->
+    <!-- ============ PUBLICATIONS ============ -->
     <section id="publications" class="wrap section">
       <div class="section-head">
         <h2>Selected Publications</h2>
       </div>
- 
+
       <article class="pub-item">
         <p>
           <strong>Irtifa Haider</strong>, S. Alam, M. T. Hossan, M. M. Anwar, T. T. Aurpa.
@@ -170,38 +230,40 @@
       </article>
     </section>
 
-
-    <!-- ============ RESEARCH EXPERIENCE ============ -->
+    <!-- ============ RESEARCH WORKS ============ -->
     <section id="research" class="wrap section">
       <div class="section-head">
         <h2>Research Works</h2>
       </div>
-    <div class="timeline">
 
+      <div class="timeline">
         <div class="t-item">
           <time>Jun 2025 – Present</time>
           <h3>Graduate Researcher, <a href="https://sites.google.com/juniv.edu/mdmusfiqueanwar/ju-cidl-lab" target="_blank" rel="noopener">Computational Intelligence, Data and Language Research Lab</a></h3>
           <p>Jahangirnagar University, supervised by <a href="https://sites.google.com/juniv.edu/mdmusfiqueanwar/ju-cidl-lab" target="_blank" rel="noopener">Dr. Md. Musfique Anwar</a>. Working on the reliability of multilingual LLMs in Bangla, with a focus on medical dialogue.</p>
         </div>
       </div>
-    </section>
- 
-    <!-- ============ RESEARCH EXPERIENCE ============ -->
-    <section id="research" class="wrap section">
-      <div class="section-head">
-        <h2>Research Works</h2>
-      </div>
- 
+
       <div class="rx-list">
- 
+
+        <article class="rx">
+          <h3>Insist-BN: Do LLMs Change Clinical Advice for the Right Reason?</h3>
+          <p class="rx-meta">
+            <span class="status wip">Ongoing research · M.Sc. research</span>
+            <span>Supervised by <b>Dr. Md. Musfique Anwar</b></span>
+          </p>
+          <ul class="rx-points">
+            <li>Building a benchmark from real Bangla doctor–patient calls (DocTalkBN) in which a patient's pushback varies independently in content (a new clinical fact, no new fact, or an irrelevant fact) and in wording (neutral, emotional or insistent).</li>
+            <li>Measures whether LLMs update their clinical advice because of new information rather than pressure alone.</li>
+          </ul>
+        </article>
+
         <article class="rx">
           <h3>A Comprehensive Text Optimization Approach to Bangla Summarization</h3>
           <p class="rx-meta">
             <span class="status pub">Published · BLP 2025, IJCNLP–AACL</span>
             <span>Undergraduate research, supervised by <b>Dr. Md. Musfique Anwar</b> (co-supervisor: Md. Tazel Hossan)</span>
           </p>
-          <!-- TODO: add stat boxes with your key results (e.g. ROUGE scores, dataset size).
-               Copy the <div class="stats"> block from the Star-based community detection card below. -->
           <ul class="rx-points">
             <li>Studied transformer-based language models for Bangla text summarization, covering text optimization, dataset preprocessing, model training, hyperparameter tuning and experimental evaluation.</li>
             <li>Presented at the Second Bangla Language Processing Workshop, co-located with IJCNLP–AACL 2025.</li>
@@ -213,7 +275,7 @@
             </a>
           </div>
         </article>
- 
+
         <article class="rx">
           <h3>Star-Based Community Detection in Social Networks: The Hub Effect</h3>
           <p class="rx-meta">
@@ -239,17 +301,7 @@
             </a>
           </div>
         </article>
- 
-        <article class="rx">
-          <h3>The Patient Insists: Measuring Sycophancy and Safety Drift of LLMs in Multi-turn Bangla Medical Dialogue</h3>
-          <p class="rx-meta"><span class="status prep">Manuscript in preparation</span></p>
-          <!-- TODO: add stat boxes (models tested, number of dialogues, key result) once you have numbers. -->
-          <ul class="rx-points">
-            <li>Measures how large language models give way to repeated patient pressure (sycophancy) and drift away from safe medical advice over multi-turn conversations in Bangla.</li>
-            <li>Focuses on the reliability of LLMs in a low-resource language, where safety behaviour is less studied than in English.</li>
-          </ul>
-        </article>
- 
+
         <article class="rx">
           <h3>HSECRS: Hybrid Smart Energy Control and Redistribution System</h3>
           <p class="rx-meta">
@@ -267,7 +319,7 @@
             </a>
           </div>
         </article>
- 
+
       </div>
     </section>
 
@@ -275,7 +327,7 @@
     <section id="skills" class="wrap section">
       <div class="section-head">
         <h2>Skills &amp; Technologies</h2>
-              </div>
+      </div>
 
       <div class="skill-grid">
 
@@ -290,7 +342,7 @@
         <article class="skill-card">
           <div class="skill-top">
             <span class="skill-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span>
-            <h3>ML / AI</h3><span class="count">8</span>
+            <h3>ML / AI</h3><span class="count">7</span>
           </div>
           <div class="chips-sm"><span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>NumPy</span><span>pandas</span><span>matplotlib</span><span>Word2Vec</span></div>
         </article>
@@ -322,7 +374,7 @@
         <article class="skill-card">
           <div class="skill-top">
             <span class="skill-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-            <h3>Tools &amp; Platforms</h3><span class="count">17</span>
+            <h3>Tools &amp; Platforms</h3><span class="count">18</span>
           </div>
           <div class="chips-sm"><span>Git &amp; GitHub</span><span>VS Code</span><span>Android Studio</span><span>NetBeans</span><span>Eclipse</span><span>Anaconda</span><span>Visual Paradigm</span><span>CI/CD</span><span>JUnit</span><span>Mockito</span><span>MATLAB</span><span>Blynk</span><span>Overleaf</span><span>Jira</span><span>Trello</span><span>Slack</span><span>Toggl</span><span>Microsoft Office Suite</span></div>
         </article>
@@ -334,10 +386,8 @@
     <section id="projects" class="wrap section">
       <div class="section-head">
         <h2>Academic Projects</h2>
-              </div>
+      </div>
 
-      <!-- Each card image is GitHub's own preview image for the repo.
-           To use a real screenshot: save it in images/projects/ and change the img src. -->
       <div class="projects">
 
         <article class="project">
@@ -472,7 +522,6 @@
     </section>
 
     <!-- ============ HONORS & AWARDS ============ -->
-   <!-- ============ HONORS & AWARDS ============ -->
     <section id="honors" class="wrap section">
       <div class="section-head">
         <h2>Honors &amp; Awards</h2>
@@ -483,7 +532,7 @@
           <span class="year">2025</span>
           <div>
             <h3>Registration Grant, BLP 2025</h3>
-            <p>Awarded a USD 200 reimbursement to present at the Second Bangla Language Processing Workshop (BLP), co-located with IJCNLP–AACL 2025.</p>
+            <p>Received a USD 200 grant covering the paper registration fee for the Second Bangla Language Processing Workshop (BLP), co-located with IJCNLP–AACL 2025.</p>
           </div>
         </article>
 
@@ -506,8 +555,16 @@
         <article class="award">
           <span class="year">2021</span>
           <div>
-            <h3>ICPC &amp; NCPC</h3>
-            <p>Competed in the preliminary round of the International Collegiate Programming Contest (ICPC) and participated in the preliminary round of the National Collegiate Programming Contest (NCPC).</p>
+            <h3>ICPC</h3>
+            <p>Competed in the preliminary round of the International Collegiate Programming Contest (ICPC).</p>
+          </div>
+        </article>
+
+        <article class="award">
+          <span class="year">2021</span>
+          <div>
+            <h3>NCPC</h3>
+            <p>Participated in the preliminary round of the National Collegiate Programming Contest (NCPC).</p>
           </div>
         </article>
 
@@ -522,15 +579,13 @@
       </div>
     </section>
 
-    <!-- ============ CERTIFICATIONS (with certificate images) ============ -->
+    <!-- ============ CERTIFICATIONS ============ -->
     <section id="certifications" class="wrap section">
       <div class="section-head">
         <h2>Certifications</h2>
         <p>Click a certificate to open it</p>
       </div>
 
-      <!-- Put your certificate images in images/certificates/ with these file names,
-           or change the src and href of each card to match your own file names. -->
       <div class="certs">
 
         <article class="cert">
