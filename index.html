@@ -82,46 +82,38 @@
       line-height: 1.7;
       opacity: 0.85;
     }
-    /* ---------- Research interests: full width, bright chips ---------- */
+    /* ---------- Research interests: full-width row, light green chips ---------- */
     :root {
-      --c1: #0f766e; --c1-bg: rgba(20, 184, 166, .14); --c1-line: rgba(20, 184, 166, .45);
-      --c2: #4f46e5; --c2-bg: rgba(99, 102, 241, .13); --c2-line: rgba(99, 102, 241, .45);
-      --c3: #b45309; --c3-bg: rgba(245, 158, 11, .15); --c3-line: rgba(245, 158, 11, .50);
-      --c4: #be185d; --c4-bg: rgba(236, 72, 153, .12); --c4-line: rgba(236, 72, 153, .45);
+      --chip-green: #0f766e;
+      --chip-green-bg: rgba(20, 184, 166, .12);
+      --chip-green-line: rgba(20, 184, 166, .45);
     }
     :root[data-theme="dark"] {
-      --c1: #5eead4; --c1-bg: rgba(45, 212, 191, .12); --c1-line: rgba(45, 212, 191, .45);
-      --c2: #a5b4fc; --c2-bg: rgba(129, 140, 248, .14); --c2-line: rgba(129, 140, 248, .50);
-      --c3: #fcd34d; --c3-bg: rgba(251, 191, 36, .12); --c3-line: rgba(251, 191, 36, .45);
-      --c4: #f9a8d4; --c4-bg: rgba(244, 114, 182, .12); --c4-line: rgba(244, 114, 182, .45);
+      --chip-green: #5eead4;
+      --chip-green-bg: rgba(45, 212, 191, .10);
+      --chip-green-line: rgba(45, 212, 191, .40);
     }
-    .hero-text .about-label {
-      margin-top: 22px;
+    .hero-interests { grid-column: 1 / -1; }   /* spans under both the text and the photo */
+    .hero-interests .about-label {
+      margin: 6px 0 0;
       color: var(--accent);
       font-weight: 700;
     }
-    .hero-text .chips {
-      max-width: none;
-      width: 100%;
-      gap: 10px;
-    }
-    .hero-text .chips span {
-      flex: 1 1 auto;               /* chips stretch so each row fills the full width */
+    .hero-interests .chips { width: 100%; gap: 10px; }
+    .hero-interests .chips span {
+      flex: 1 1 auto;                /* chips stretch so every row fills the page width */
       text-align: center;
       font-weight: 600;
       padding: 7px 16px;
       border-radius: 999px;
-      color: var(--c1);
-      background: var(--c1-bg);
-      border: 1px solid var(--c1-line);
+      color: var(--chip-green);
+      background: var(--chip-green-bg);
+      border: 1px solid var(--chip-green-line);
       transition: transform .15s ease, box-shadow .15s ease;
     }
-    .hero-text .chips span:nth-child(4n+2) { color: var(--c2); background: var(--c2-bg); border-color: var(--c2-line); }
-    .hero-text .chips span:nth-child(4n+3) { color: var(--c3); background: var(--c3-bg); border-color: var(--c3-line); }
-    .hero-text .chips span:nth-child(4n+4) { color: var(--c4); background: var(--c4-bg); border-color: var(--c4-line); }
-    .hero-text .chips span:hover {
+    .hero-interests .chips span:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 0 1px currentColor, 0 6px 18px -6px currentColor;
+      box-shadow: 0 6px 18px -8px var(--chip-green);
     }
   </style>
 </head>
@@ -158,7 +150,8 @@
         <h1>Irtifa Haider</h1>
         <p class="tagline">
           <span class="tag-line" aria-hidden="true"></span>
-                   <span class="tag-sub">Prospective Graduate Student</span>
+          <span class="tag-main">MSc Student</span>
+          <span class="tag-sub">Prospective Graduate Student</span>
         </p>
 
         <p class="hero-about">
@@ -166,25 +159,12 @@
           Language Processing</strong>, with a focus on Bangla, a language that still has far fewer ready-made
           NLP resources than English. My <strong>published</strong> work studies how text optimization and
           transformer-based models can improve Bangla text summarization. My current research
-          asks whether <strong>large language models</strong> behave reliably in Bangla, in particular whether
+          asks whether large language models behave reliably in Bangla, in particular whether
           they change medical advice because a patient gives new clinical information or only
           because the patient pushes harder. I am also interested in information retrieval, graph mining and community detection
           in social networks.
         </p>
 
-        <p class="about-label">Research interests</p>
-        <div class="chips" aria-label="Research interests">
-          <span>Large Language Models</span>
-          <span>Trustworthy NLP</span>
-          <span>LLM Reliability</span>
-          <span>Low-Resource Languages</span>
-          <span>Natural Language Processing</span>
-          <span>Text Summarization</span>
-          <span>Graph Mining</span>
-          <span>Social Network Analysis</span>
-          <span>Information Retrieval</span>
-          <span>Machine Learning</span>
-        </div>
       </div>
 
       <div class="hero-photo">
@@ -199,6 +179,22 @@
           <li><a class="btn" href="https://scholar.google.com/citations?user=NlQSgsYAAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener">Google Scholar</a></li>
           <li><a class="btn" href="https://www.linkedin.com/in/irtifa-haider-ahona-1924821b0/" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
+      </div>
+
+      <div class="hero-interests">
+        <p class="about-label">Research interests</p>
+        <div class="chips" aria-label="Research interests">
+          <span>Large Language Models</span>
+          <span>Trustworthy NLP</span>
+          <span>LLM Reliability</span>
+          <span>Low-Resource Languages</span>
+          <span>Natural Language Processing</span>
+          <span>Text Summarization</span>
+          <span>Graph Mining</span>
+          <span>Social Network Analysis</span>
+          <span>Information Retrieval</span>
+          <span>Machine Learning</span>
+        </div>
       </div>
     </section>
 
