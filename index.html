@@ -21,19 +21,22 @@
 
   <!-- Small overrides on top of style.css (can be moved into style.css later) -->
   <style>
-    /* Larger profile photo */
-    .hero-photo img,
-    .hero-photo .photo-fallback {
-      width: 320px;
-      height: 320px;
-    }
-    @media (max-width: 700px) {
-      .hero-photo img,
-      .hero-photo .photo-fallback {
-        width: 240px;
-        height: 240px;
-      }
-    }
+   /* Larger profile photo, no stretching */
+.hero-photo img,
+.hero-photo .photo-fallback {
+  width: 300px;
+  height: 300px;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+@media (max-width: 700px) {
+  .hero-photo img,
+  .hero-photo .photo-fallback {
+    width: 240px;
+    height: 240px;
+  }
+}
 
     /* Two equal-width cards that fill the row (Education, Volunteer) */
     .edu {
@@ -197,7 +200,7 @@
           <time>Sep 2025 – Present</time>
           <h3>MSc in Computer Science and Engineering</h3>
           <p>Jahangirnagar University, Savar, Dhaka, Bangladesh</p>
-          <p>Research: <em>Insist-BN: Do LLMs Change Clinical Advice for the Right Reason?</em> (ongoing)</p>
+          <p>Research Project: <em>Insist-BN: Do LLMs Change Clinical Advice for the Right Reason?</em></p>
           <p>Courses: Natural Language Processing, Machine Intelligence and Expert Systems, Network Security, Distributed Database, Advanced Neural Network</p>
         </article>
 
@@ -233,7 +236,7 @@
     <!-- ============ RESEARCH WORKS ============ -->
     <section id="research" class="wrap section">
       <div class="section-head">
-        <h2>Research Works</h2>
+        <h2>Research Experience</h2>
       </div>
 
       <div class="timeline">
@@ -242,6 +245,12 @@
           <h3>Graduate Researcher, <a href="https://sites.google.com/juniv.edu/mdmusfiqueanwar/ju-cidl-lab" target="_blank" rel="noopener">Computational Intelligence, Data and Language Research Lab</a></h3>
           <p>Jahangirnagar University, supervised by <a href="https://sites.google.com/juniv.edu/mdmusfiqueanwar/ju-cidl-lab" target="_blank" rel="noopener">Dr. Md. Musfique Anwar</a>. Working on the reliability of multilingual LLMs in Bangla, with a focus on medical dialogue.</p>
         </div>
+      </div>
+      </section>
+
+      <section id="research" class="wrap section">
+      <div class="section-head">
+        <h2>Research Works</h2>
       </div>
 
       <div class="rx-list">
