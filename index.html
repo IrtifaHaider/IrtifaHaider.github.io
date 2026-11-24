@@ -82,8 +82,47 @@
       line-height: 1.7;
       opacity: 0.85;
     }
-    .hero-text .about-label { margin-top: 20px; }
-    .hero-text .chips { max-width: 640px; }
+    /* ---------- Research interests: full width, bright chips ---------- */
+    :root {
+      --c1: #0f766e; --c1-bg: rgba(20, 184, 166, .14); --c1-line: rgba(20, 184, 166, .45);
+      --c2: #4f46e5; --c2-bg: rgba(99, 102, 241, .13); --c2-line: rgba(99, 102, 241, .45);
+      --c3: #b45309; --c3-bg: rgba(245, 158, 11, .15); --c3-line: rgba(245, 158, 11, .50);
+      --c4: #be185d; --c4-bg: rgba(236, 72, 153, .12); --c4-line: rgba(236, 72, 153, .45);
+    }
+    :root[data-theme="dark"] {
+      --c1: #5eead4; --c1-bg: rgba(45, 212, 191, .12); --c1-line: rgba(45, 212, 191, .45);
+      --c2: #a5b4fc; --c2-bg: rgba(129, 140, 248, .14); --c2-line: rgba(129, 140, 248, .50);
+      --c3: #fcd34d; --c3-bg: rgba(251, 191, 36, .12); --c3-line: rgba(251, 191, 36, .45);
+      --c4: #f9a8d4; --c4-bg: rgba(244, 114, 182, .12); --c4-line: rgba(244, 114, 182, .45);
+    }
+    .hero-text .about-label {
+      margin-top: 22px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .hero-text .chips {
+      max-width: none;
+      width: 100%;
+      gap: 10px;
+    }
+    .hero-text .chips span {
+      flex: 1 1 auto;               /* chips stretch so each row fills the full width */
+      text-align: center;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 999px;
+      color: var(--c1);
+      background: var(--c1-bg);
+      border: 1px solid var(--c1-line);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .hero-text .chips span:nth-child(4n+2) { color: var(--c2); background: var(--c2-bg); border-color: var(--c2-line); }
+    .hero-text .chips span:nth-child(4n+3) { color: var(--c3); background: var(--c3-bg); border-color: var(--c3-line); }
+    .hero-text .chips span:nth-child(4n+4) { color: var(--c4); background: var(--c4-bg); border-color: var(--c4-line); }
+    .hero-text .chips span:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 1px currentColor, 0 6px 18px -6px currentColor;
+    }
   </style>
 </head>
 <body>
@@ -117,16 +156,17 @@
       <div class="hero-text">
         <p class="eyebrow">Hi, I'm</p>
         <h1>Irtifa Haider</h1>
-        <p class="role">MSc Student in Computer Science and Engineering<br>Jahangirnagar University, Bangladesh</p>
-
-        <hr class="hero-divider" aria-hidden="true">
+        <p class="tagline">
+          <span class="tag-line" aria-hidden="true"></span>
+                   <span class="tag-sub">Prospective Graduate Student</span>
+        </p>
 
         <p class="hero-about">
-          I am an MSc student and graduate researcher at Jahangirnagar University working on Natural
-          Language Processing, with a focus on Bangla, a language that still has far fewer ready-made
-          NLP resources than English. My published work studies how text optimization and
+          I am an MSc student and <strong>graduate researcher</strong> at <strong>Jahangirnagar University</strong> working on <strong>Natural
+          Language Processing</strong>, with a focus on Bangla, a language that still has far fewer ready-made
+          NLP resources than English. My <strong>published</strong> work studies how text optimization and
           transformer-based models can improve Bangla text summarization. My current research
-          asks whether large language models behave reliably in Bangla, in particular whether
+          asks whether <strong>large language models</strong> behave reliably in Bangla, in particular whether
           they change medical advice because a patient gives new clinical information or only
           because the patient pushes harder. I am also interested in information retrieval, graph mining and community detection
           in social networks.
