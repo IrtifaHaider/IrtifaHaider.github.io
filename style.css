@@ -1,720 +1,321 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Irtifa Haider</title>
-  <meta name="description" content="Irtifa Haider: MSc student in Computer Science and Engineering at Jahangirnagar University. Research in Natural Language Processing, Bangla text summarization and large language models.">
-  <meta name="author" content="Irtifa Haider">
-  <meta property="og:title" content="Irtifa Haider">
-  <meta property="og:description" content="MSc student at Jahangirnagar University working on Bangla NLP and LLMs. Applying for PhD, Fall 2027.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://irtifahaider.github.io/images/2.jpg">
-  <meta property="og:url" content="https://irtifahaider.github.io/">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" type="image/jpeg" href="images/2.jpg">
-  <link rel="apple-touch-icon" href="images/2.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+/* =====================================================================
+   Irtifa Haider portfolio: complete stylesheet.
+   Replace your whole style.css with this file (do not paste it in pieces).
+   ===================================================================== */
 
-  <!-- Small overrides on top of style.css (can be moved into style.css later) -->
-  <style>
-   /* Larger profile photo, no stretching */
-.hero-photo img,
-.hero-photo .photo-fallback {
-  width: 300px;
-  height: 300px;
-  max-width: 100%;
-  object-fit: cover;
-  object-position: center 30%;
+/* ---------- Theme tokens ---------- */
+:root {
+  --bg: #fbfbf9;
+  --surface: #ffffff;
+  --text: #1c2330;
+  --muted: #5b6577;
+  --line: #e3e6ec;
+  --chip: #eef1f5;
+  --accent: #0f766e;
+  --accent-soft: #e0f2f0;
+  --accent-text: #ffffff;
+  --amber: #a15c07;
+  --amber-bg: rgba(214, 158, 46, .14);
+  --green: #2f855a;
+  --green-bg: rgba(56, 161, 105, .13);
+  --indigo: #4f46e5;
+  --indigo-bg: rgba(99, 102, 241, .10);
+  --indigo-line: rgba(99, 102, 241, .30);
+  --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 4px 16px rgba(16, 24, 40, .05);
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
-@media (max-width: 700px) {
-  .hero-photo img,
-  .hero-photo .photo-fallback {
-    width: 240px;
-    height: 240px;
+
+:root[data-theme="dark"] {
+  --bg: #0f141b;
+  --surface: #161d27;
+  --text: #e8ecf2;
+  --muted: #9aa5b8;
+  --line: #263041;
+  --chip: #1f2937;
+  --accent: #4fd1c5;
+  --accent-soft: #16312f;
+  --accent-text: #08201e;
+  --amber: #f6c453;
+  --amber-bg: rgba(246, 196, 83, .12);
+  --green: #6ee7a8;
+  --green-bg: rgba(110, 231, 168, .12);
+  --indigo: #a5b4fc;
+  --indigo-bg: rgba(165, 180, 252, .12);
+  --indigo-line: rgba(165, 180, 252, .30);
+  --shadow: none;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 28px); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.25; margin: 0; }
+p { margin: 0 0 1rem; overflow-wrap: anywhere; }
+h1, h2, h3 { overflow-wrap: anywhere; }
+.small { font-size: .875rem; color: var(--muted); margin-bottom: .4rem; }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; gap: 24px; height: 60px; }
+
+/* Brand: uppercase wordmark framed by two corner brackets (top-right + bottom-left) */
+.brand {
+  position: relative; display: inline-block; padding: 12px 8px 12px 18px;
+  color: var(--text); font-family: "Chakra Petch", var(--sans);
+  font-weight: 700; font-size: 1.3rem; letter-spacing: .16em; line-height: 1;
+}
+.brand:hover { text-decoration: none; }
+.brand::before, .brand::after {
+  content: ""; position: absolute; width: 55%; height: 60%;
+  border: 0 solid var(--accent); transition: width .25s ease, height .25s ease;
+}
+.brand::before { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+.brand::after { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+.brand:hover::before, .brand:hover::after { width: 100%; height: 100%; }  /* brackets grow into a full frame */
+
+.nav-links { display: flex; gap: 14px; margin-left: auto; }
+.menu-btn { display: none; margin-left: auto; }
+.nav-links a { color: var(--muted); font-size: .88rem; white-space: nowrap; }
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+.icon-btn {
+  background: none; border: 1px solid var(--line); color: var(--text);
+  width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1.05rem;
+}
+.icon-btn:hover { border-color: var(--accent); }
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: clamp(20px, 4vw, 40px);
+  align-items: start; padding-top: 44px; padding-bottom: 24px;
+}
+.eyebrow { color: var(--accent); font-weight: 600; margin-bottom: .25rem; }
+.hero-text { padding-top: 56px; }
+.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem); margin-bottom: .6rem; }
+.role { color: var(--muted); font-size: 1.05rem; }
+.links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-block; padding: 8px 16px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--surface);
+  color: var(--text); font-size: .92rem; font-weight: 500;
+}
+.btn:hover { border-color: var(--accent); text-decoration: none; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.btn.primary:hover { filter: brightness(1.08); }
+
+/* Photo column: photo and link buttons sit on the right side of the page */
+.hero-photo { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 250px; justify-self: end; }
+.hero-photo img {
+  display: block; width: 100%; max-width: 140px; height: auto;   /* change 140px to resize the photo */
+  border-radius: 14px; box-shadow: var(--shadow);
+}
+.photo-fallback {
+  display: none; place-items: center; width: 100%; max-width: 140px;
+  aspect-ratio: 4 / 3; border-radius: 14px; background: var(--accent-soft);
+  color: var(--accent); font-family: var(--serif); font-size: 2.4rem; font-weight: 700;
+}
+/* Buttons: CV on its own line, then two rows of two, all the same width and aligned under the photo */
+.hero-photo .links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+.hero-photo .links li:first-child { grid-column: 1 / -1; }
+.hero-photo .btn { display: block; width: 100%; text-align: center; padding: 6px 10px; font-size: .82rem; white-space: nowrap; }
+
+/* ---------- Sections ---------- */
+.section { padding-top: 56px; padding-bottom: 8px; }
+.section-head { text-align: center; margin-bottom: 2rem; }
+.section-head h2 { font-size: clamp(1.6rem, 3vw, 2rem); }
+.section-head p { margin: .35rem 0 0; color: var(--muted); font-size: .95rem; }
+
+.about { max-width: none; margin: 0; text-align: left; }
+#about .section-head { text-align: left; }
+.about-label { margin: 1.4rem 0 0; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 8px; margin-top: .8rem; }
+.chips span {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 4px 14px; font-size: .86rem; color: var(--muted);
+}
+
+/* Hero: tagline under the name (line + MSc Student + Prospective Graduate Student) */
+.tagline {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px;
+  margin: .4rem 0 1.4rem; font-size: .95rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.tag-line { width: 84px; height: 1px; background: var(--muted); }
+.tag-main { color: var(--text); }
+.tag-sub { color: var(--muted); }
+.hero-text .hero-about strong { color: var(--text); font-weight: 600; }
+
+/* Generic card */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); }
+.card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+.card p { font-size: .94rem; color: var(--muted); }
+.card p:last-child { margin-bottom: 0; }
+.card time { display: block; font-size: .82rem; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
+
+/* Experience timeline */
+.timeline { border-left: 2px solid var(--line); margin: 0 auto; max-width: 760px; }
+.t-item { position: relative; padding: 0 0 22px 24px; }
+.t-item::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; border: 2px solid var(--bg); }
+.t-item time { font-size: .82rem; color: var(--accent); font-weight: 600; }
+.t-item h3 { font-size: 1.05rem; margin: 2px 0 4px; }
+.t-item p { margin: 0; color: var(--muted); font-size: .94rem; }
+
+/* Education and Volunteer cards */
+.edu { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 18px; }
+
+/* Publications (list style) */
+.pub-item { max-width: 820px; margin: 0 auto 18px; border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; }
+.pub-item p { margin: 0; }
+.pub-item a { margin-left: 6px; }
+.pub-item .venue-link { font-weight: 600; }
+
+/* Research Experience: timeline of cards */
+.rx-list { display: grid; gap: 22px; margin-left: 10px; padding-left: 28px; border-left: 2px solid var(--line); }
+.rx {
+  position: relative; background: var(--surface); border: 1px solid var(--line);
+  border-left: 4px solid var(--accent); border-radius: 12px; padding: 22px 24px; box-shadow: var(--shadow);
+}
+.rx::before {
+  content: ""; position: absolute; left: -38px; top: 28px; width: 14px; height: 14px;
+  background: var(--muted); border: 3px solid var(--bg); border-radius: 50%;
+}
+.rx h3 { font-size: 1.2rem; margin-bottom: .7rem; }
+.rx-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: var(--muted); font-size: .92rem; margin-bottom: 1rem; }
+.rx-meta b { color: var(--accent); font-weight: 600; }
+.status { border: 1px solid; border-radius: 999px; padding: 3px 12px; font-size: .8rem; font-weight: 600; }
+.status.prep { color: var(--amber); background: var(--amber-bg); border-color: var(--amber-bg); }
+.status.pub { color: var(--green); background: var(--green-bg); border-color: var(--green-bg); }
+.status.wip { color: var(--accent); background: var(--accent-soft); border-color: transparent; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 130px), 1fr)); gap: 12px; margin-bottom: 1rem; }
+.stats div { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; text-align: center; }
+.stats strong { display: block; font-size: 1.15rem; }
+.stats span { font-size: .8rem; color: var(--muted); }
+.rx-points { list-style: none; padding: 0; margin: 0; }
+.rx-points li { position: relative; padding-left: 20px; margin-bottom: .6rem; font-size: .94rem; color: var(--muted); }
+.rx-points li::before { content: "\203A"; position: absolute; left: 3px; color: var(--muted); }
+.rx-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+
+/* Skills & Technologies */
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 18px; }
+.skill-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+.skill-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.skill-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); flex: none; }
+.skill-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.skill-top h3 { font-family: var(--sans); font-size: 1.05rem; font-weight: 600; }
+.count { margin-left: auto; color: var(--muted); font-size: .85rem; }
+.chips-sm { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips-sm span { background: var(--chip); border-radius: 8px; padding: 4px 12px; font-size: .84rem; color: var(--text); }
+
+/* Projects */
+.projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 22px; }
+.project {
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+  transition: transform .15s ease, border-color .15s ease;
+}
+.project:hover { transform: translateY(-4px); border-color: var(--accent); }
+.p-media {
+  position: relative; display: grid; place-items: center; aspect-ratio: 2 / 1; overflow: hidden;
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+}
+.p-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.p-initial { display: none; font-family: var(--serif); font-size: 2.4rem; font-weight: 700; color: var(--accent); }
+.p-media.no-img .p-initial { display: block; }      /* shown only if the image fails to load */
+.p-body { display: flex; flex-direction: column; gap: 12px; flex: 1; padding: 18px 20px 20px; }
+.p-body h3 { font-size: 1.1rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { background: var(--chip); border-radius: 6px; padding: 2px 10px; font-size: .78rem; font-weight: 500; }
+.p-body p { flex: 1; margin: 0; font-size: .93rem; color: var(--muted); }
+.code-btn {
+  display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+  padding: 7px 14px; border: 1px solid var(--line); border-radius: 8px;
+  color: var(--text); font-size: .88rem; font-weight: 500; background: var(--surface);
+}
+.code-btn svg { width: 16px; height: 16px; fill: currentColor; }
+.code-btn svg.stroke { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.code-btn:hover { border-color: var(--accent); text-decoration: none; }
+
+/* Honors & Awards */
+.awards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 18px; }
+.award { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow); }
+.award .year { flex: none; min-width: 60px; text-align: center; background: var(--accent-soft); color: var(--accent); border-radius: 8px; padding: 4px 8px; font-size: .82rem; font-weight: 700; }
+.award h3 { font-size: 1.02rem; margin-bottom: .25rem; }
+.award p { margin: 0; font-size: .9rem; color: var(--muted); }
+
+/* Certifications (image cards) */
+.certs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 22px; }
+.cert { display: flex; flex-direction: column; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); transition: transform .15s ease, border-color .15s ease; }
+.cert:hover { transform: translateY(-4px); border-color: var(--accent); }
+.cert-media { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; background: var(--chip); cursor: zoom-in; }
+.cert-media img { display: block; width: 100%; height: 100%; object-fit: contain; }   /* whole certificate stays visible */
+.cert-fallback { display: none; padding: 16px; text-align: center; font-size: .82rem; color: var(--muted); word-break: break-all; }
+.cert-media.no-img { cursor: default; background: linear-gradient(135deg, var(--accent-soft), var(--surface)); }
+.cert-media.no-img .cert-fallback { display: block; }   /* shown only if the image file is missing */
+.cert-body { padding: 14px 18px 18px; }
+.cert-body h3 { font-size: 1.02rem; margin-bottom: .2rem; }
+.cert-body p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+/* Contact */
+.contact { text-align: center; }
+
+/* Footer */
+.footer { margin-top: 56px; border-top: 1px solid var(--line); padding: 22px 0; color: var(--muted); font-size: .88rem; }
+.footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; }
+
+/* ---------- Responsive ---------- */
+/* Tablet and below: nav becomes a dropdown menu */
+@media (max-width: 900px) {
+  .nav-inner { gap: 12px; }
+  .menu-btn { display: inline-block; }
+  .nav-links {
+    display: none; position: absolute; top: 60px; left: 0; right: 0; margin: 0;
+    flex-direction: column; gap: 0; padding: 8px clamp(16px, 4vw, 28px) 14px;
+    background: var(--bg); border-bottom: 1px solid var(--line);
   }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 10px 0; font-size: .95rem; border-bottom: 1px solid var(--line); }
+  .nav-links a:last-child { border-bottom: 0; }
 }
 
-    /* Two equal-width cards that fill the row (Education, Volunteer) */
-    .edu {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      align-items: stretch;
-    }
-    .edu .card {
-      height: 100%;
-      box-sizing: border-box;
-    }
-    @media (max-width: 700px) {
-      .edu { grid-template-columns: 1fr; }
-    }
-
-    /* Vertical line for the timeline, like in Research Works.
-       If the line does not sit under the dots, change "left" below. */
-    .timeline {
-      position: relative;
-    }
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 9px;
-      top: 10px;
-      bottom: 10px;
-      width: 2px;
-      background: rgba(148, 163, 184, 0.25);
-      z-index: 0;
-    }
-    .timeline .t-item {
-      position: relative;
-      z-index: 1;
-    }
-    .timeline .t-item ul {
-      margin-top: 6px;
-    }
-    /* About text + chips inside the hero, left of the photo */
-    .hero-text .hero-about {
-      margin-top: 0;
-      max-width: 640px;
-      line-height: 1.7;
-      opacity: 0.85;
-    }
-    .hero-text .about-label { margin-top: 20px; }
-    .hero-text .chips { max-width: 640px; }
-  </style>
-</head>
-<body>
-
-  <!-- ============ NAV ============ -->
-  <header class="nav">
-    <div class="wrap nav-inner">
-      <a href="#top" class="brand" aria-label="Irtifa Haider, back to top">
-        <span class="brand-text">IRTIFA</span>
-      </a>
-      <nav class="nav-links" id="primaryNav" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#publications">Publications</a>
-        <a href="#research">Research</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#certifications">Certificates</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button id="menuToggle" class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">&#9776;</button>
-      <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">&#9680;</button>
-    </div>
-  </header>
-
-  <main id="top">
-
-    <!-- ============ HERO + ABOUT ============ -->
-    <section id="about" class="hero wrap">
-      <div class="hero-text">
-        <p class="eyebrow">Hi, I'm</p>
-        <h1>Irtifa Haider</h1>
-        <p class="role">MSc Student in Computer Science and Engineering<br>Jahangirnagar University, Bangladesh</p>
-
-        <hr class="hero-divider" aria-hidden="true">
-
-        <p class="hero-about">
-          I am an MSc student and graduate researcher at Jahangirnagar University working on Natural
-          Language Processing, with a focus on Bangla, a language that still has far fewer ready-made
-          NLP resources than English. My published work studies how text optimization and
-          transformer-based models can improve Bangla text summarization. My current research
-          asks whether large language models behave reliably in Bangla, in particular whether
-          they change medical advice because a patient gives new clinical information or only
-          because the patient pushes harder. I am also interested in information retrieval, graph mining and community detection
-          in social networks.
-        </p>
-
-        <p class="about-label">Research interests</p>
-        <div class="chips" aria-label="Research interests">
-          <span>Large Language Models</span>
-          <span>Trustworthy NLP</span>
-          <span>LLM Reliability</span>
-          <span>Low-Resource Languages</span>
-          <span>Natural Language Processing</span>
-          <span>Text Summarization</span>
-          <span>Graph Mining</span>
-          <span>Social Network Analysis</span>
-          <span>Information Retrieval</span>
-          <span>Machine Learning</span>
-        </div>
-      </div>
-
-      <div class="hero-photo">
-        <img src="images/2.jpg" alt="Portrait of Irtifa Haider" width="320" height="320"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-        <div class="photo-fallback" aria-hidden="true">IH</div>
-
-        <ul class="links">
-          <li><a class="btn primary" href="assets/Irtifa_Haider.pdf" target="_blank" rel="noopener">Download CV</a></li>
-          <li><a class="btn" href="mailto:irtifa.stu2019@juniv.edu">Email</a></li>
-          <li><a class="btn" href="https://github.com/IrtifaHaider" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a class="btn" href="https://scholar.google.com/citations?user=NlQSgsYAAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener">Google Scholar</a></li>
-          <li><a class="btn" href="https://www.linkedin.com/in/irtifa-haider-ahona-1924821b0/" target="_blank" rel="noopener">LinkedIn</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ WORK EXPERIENCE ============ -->
-    <section id="experience" class="wrap section">
-      <div class="section-head">
-        <h2>Work Experience</h2>
-      </div>
-      <div class="timeline">
-
-        <div class="t-item">
-          <time>Apr 2026 – Jun 2026</time>
-          <h3>QA Functional Tester (Intern), <a href="https://www.a1qa.com/" target="_blank" rel="noopener">A1QA</a></h3>
-          <ul class="rx-points">
-            <li>Worked with various testing types, including smoke, acceptance and manual testing.</li>
-            <li>Designed and executed test cases and performed test planning.</li>
-            <li>Identified bugs and reported defects in Jira with clear documentation and reproduction steps.</li>
-          </ul>
-        </div>
-
-        <div class="t-item">
-          <time>Sep 2024 – Apr 2026</time>
-          <h3>Coding Instructor, <a href="https://coderpals.com/mentors" target="_blank" rel="noopener">CoderPals</a></h3>
-          <ul class="rx-points">
-            <li>Taught Scratch and Python to children through engaging, game-based and project-based lessons.</li>
-            <li>Simplified programming concepts to build computational thinking, creativity and problem-solving skills.</li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ============ EDUCATION ============ -->
-    <section id="education" class="wrap section">
-      <div class="section-head">
-        <h2>Education</h2>
-      </div>
-      <div class="edu">
-
-        <article class="card">
-          <time>Sep 2025 – Present</time>
-          <h3>MSc in Computer Science and Engineering</h3>
-          <p>Jahangirnagar University, Savar, Dhaka, Bangladesh</p>
-          <p>Research Project: <em>Insist-BN: Do LLMs Change Clinical Advice for the Right Reason?</em></p>
-          <p>Courses: Natural Language Processing, Machine Intelligence and Expert Systems, Network Security, Distributed Database, Advanced Neural Network</p>
-        </article>
-
-        <article class="card">
-          <time>Mar 2020 – Sep 2025</time>
-          <h3>BSc in Computer Science and Engineering</h3>
-          <p>Jahangirnagar University, Savar, Dhaka, Bangladesh</p>
-          <p>CGPA 3.42/4.00</p>
-          <p>Thesis: <em><a href="https://github.com/IrtifaHaider/Social_Network_Clustering_using_Star_Clustering_Algoritm" target="_blank" rel="noopener">The Star Paradigm: Redefining Social Network Clustering</a></em></p>
-          <p>Courses: Artificial Intelligence, Machine Learning, Data Mining, Algorithms, Database Systems, Research Project</p>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ============ PUBLICATIONS ============ -->
-    <section id="publications" class="wrap section">
-      <div class="section-head">
-        <h2>Selected Publications</h2>
-      </div>
-
-      <article class="pub-item">
-        <p>
-          <strong> Haider, I. </strong>, Alam, S., Hossan, M. T., Anwar, M. M., & Aurpa, T. T. (2025).
-          A Comprehensive Text Optimization Approach to Bangla Summarization.
-          <em>Proceedings of the Second Bangla Language Processing Workshop (BLP), co-located with the 14th International Joint Conference on Natural Language Processing (IJCNLP–AACL)</em>, 2025.
-          <a class="venue-link" href="https://aclanthology.org/2025.banglalp-1.13/" target="_blank" rel="noopener">BLP 2025</a>
-          <a href="https://aclanthology.org/2025.banglalp-1.13/" target="_blank" rel="noopener">Paper</a>
-        </p>
-      </article>
-    </section>
-
-    <!-- ============ RESEARCH EXPERIENCE ============ -->
-    <section id="research" class="wrap section">
-      <div class="section-head">
-        <h2>Research Experience</h2>
-      </div>
-
-      <div class="timeline">
-        <div class="t-item">
-          <time>Aug 2025 – Present</time>
-          <h3>Graduate Researcher, <a href="https://sites.google.com/juniv.edu/mdmusfiqueanwar/ju-cidl-lab" target="_blank" rel="noopener">Computational Intelligence, Data and Language Research Lab</a></h3>
-          <p>Jahangirnagar University · Supervisor: <a href="https://sites.google.com/juniv.edu/mdmusfiqueanwar" target="_blank" rel="noopener">Dr. Md. Musfique Anwar</a></p>
-          <ul class="rx-points">
-            <li><strong>LLM Reliability in Medical Dialogue (Insist-BN):</strong> Designing a benchmark built from real Bangla doctor–patient calls (DocTalkBN) that tests whether LLMs change their clinical advice because of new clinical information or only because of patient pressure. Each patient pushback varies in content (a new clinical fact, no new fact, or an irrelevant fact) and in wording (neutral, emotional, insistent, or appeal to authority), and is tested in both Bangla and English.</li>
-            <li><strong>Summarization &amp; Optimization:</strong> Led the development of a two-phase Bangla summarization framework that combines entity-aware ranking, mT5 drafting and mBART refinement on BANSData (19,096 pairs). It improved ROUGE-1 from 0.30 to 0.54 and BERTScore from 0.52 to 0.88, outperforming fine-tuned BanglaT5 and zero-shot Qwen2.5 and LLaMA-3. Published as first author at <a href="https://aclanthology.org/2025.banglalp-1.13/" target="_blank" rel="noopener">BLP 2025 @ IJCNLP–AACL 2025</a>.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ RESEARCH WORKS ============ -->
-    <section id="research-works" class="wrap section">
-      <div class="section-head">
-        <h2>Research Works</h2>
-      </div>
-
-      <div class="rx-list">
-        <article class="rx">
-          <h3>A Comprehensive Text Optimization Approach to Bangla Summarization</h3>
-          <p class="rx-meta">
-            <span class="status pub">Published · BLP 2025, IJCNLP–AACL</span>
-            <span>Undergraduate research, supervised by <b>Dr. Md. Musfique Anwar</b> (co-supervisor: Md. Tazel Hossan)</span>
-          </p>
-          <ul class="rx-points">
-            <li>Studied transformer-based language models for Bangla text summarization, covering text optimization, dataset preprocessing, model training, hyperparameter tuning and experimental evaluation.</li>
-            <li>Presented at the Second Bangla Language Processing Workshop, co-located with IJCNLP–AACL 2025.</li>
-          </ul>
-          <div class="rx-links">
-            <a class="code-btn" href="https://aclanthology.org/2025.banglalp-1.13/" target="_blank" rel="noopener">
-              <svg class="stroke" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>
-              Paper
-            </a>
-          </div>
-        </article>
-
-        <article class="rx">
-          <h3>Insist-BN: Do LLMs Change Clinical Advice for the Right Reason?</h3>
-          <p class="rx-meta">
-            <span class="status wip">Ongoing research · M.Sc. research</span>
-            <span>Supervised by <b>Dr. Md. Musfique Anwar</b></span>
-          </p>
-          <ul class="rx-points">
-            <li>Building a benchmark from real Bangla doctor–patient calls (DocTalkBN) in which a patient's pushback varies independently in content (a new clinical fact, no new fact, or an irrelevant fact) and in wording (neutral, emotional or insistent).</li>
-            <li>Measures whether LLMs update their clinical advice because of new information rather than pressure alone.</li>
-          </ul>
-        </article>
-
-        <article class="rx">
-          <h3>Star-Based Community Detection in Social Networks: The Hub Effect</h3>
-          <p class="rx-meta">
-            <span class="status prep">Manuscript in preparation</span>
-            <span>Extends the B.Sc. thesis <em>The Star Paradigm: Redefining Social Network Clustering</em>, supervised by <b>Dr. Sanjit Kumar Saha</b></span>
-          </p>
-          <div class="stats">
-            <div><strong>0.85</strong><span>F1 on Zachary's Karate Club</span></div>
-            <div><strong>0.29</strong><span>modularity on Karate Club</span></div>
-            <div><strong>250–2,000</strong><span>nodes in scalability tests</span></div>
-            <div><strong>0–30%</strong><span>noise edges tested</span></div>
-          </div>
-          <ul class="rx-points">
-            <li>Applied the Star Clustering Algorithm to community detection: high-degree nodes become cluster centres, and the number of communities does not need to be set in advance.</li>
-            <li>In the thesis, Star Clustering reached the highest F1-score (0.85) and modularity (0.29) on Zachary's Karate Club, ahead of K-Means, K-Medoids and Agglomerative Clustering.</li>
-            <li>The manuscript compares the approach against Louvain, Label Propagation and Greedy Modularity on classic networks and LFR benchmark graphs, using modularity, coverage, NMI, runtime and community count.</li>
-            <li>Studies an incremental setting in which nodes stream into LFR graphs from a 40% seed set, along with sensitivity to the parameter τ, node arrival order (random, preferential, BFS), scalability and robustness to noise edges.</li>
-          </ul>
-          <div class="rx-links">
-            <a class="code-btn" href="https://github.com/IrtifaHaider/Social_Network_Clustering_using_Star_Clustering_Algoritm" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              Code
-            </a>
-          </div>
-        </article>
-
-        <article class="rx">
-          <h3>HSECRS: Hybrid Smart Energy Control and Redistribution System</h3>
-          <p class="rx-meta">
-            <span class="status wip">In progress · Manuscript in preparation</span>
-            <span>Research work, supervised by <b>Dr. Md. Ezharul Islam</b></span>
-          </p>
-          <ul class="rx-points">
-            <li>Developing an AI-enabled smart energy management and redistribution system for efficient power utilization.</li>
-            <li>Built an IoT prototype that optimizes power distribution across solar, grid and battery sources and prioritizes critical loads.</li>
-          </ul>
-          <div class="rx-links">
-            <a class="code-btn" href="https://github.com/IrtifaHaider/Hybrid-Smart-Energy-Control-and-Redistribution-System-Using-IoT" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              Code
-            </a>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ============ SKILLS ============ -->
-    <section id="skills" class="wrap section">
-      <div class="section-head">
-        <h2>Skills &amp; Technologies</h2>
-      </div>
-
-      <div class="skill-grid">
-
-        <article class="skill-card">
-          <div class="skill-top">
-            <span class="skill-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
-            <h3>Languages</h3><span class="count">5</span>
-          </div>
-          <div class="chips-sm"><span>Python</span><span>C++</span><span>Java</span><span>JavaScript</span><span>PHP</span></div>
-        </article>
-
-        <article class="skill-card">
-          <div class="skill-top">
-            <span class="skill-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span>
-            <h3>ML / AI</h3><span class="count">7</span>
-          </div>
-          <div class="chips-sm"><span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>NumPy</span><span>pandas</span><span>matplotlib</span><span>Word2Vec</span></div>
-        </article>
-
-        <article class="skill-card">
-          <div class="skill-top">
-            <span class="skill-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-            <h3>NLP &amp; Language Models</h3><span class="count">10</span>
-          </div>
-          <div class="chips-sm"><span>BERT</span><span>BanglaBERT</span><span>mBERT</span><span>XLM-RoBERTa</span><span>mT5</span><span>T5</span><span>GPT-4</span><span>Gemini</span><span>Llama</span><span>Qwen2.5</span></div>
-        </article>
-
-        <article class="skill-card">
-          <div class="skill-top">
-            <span class="skill-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-            <h3>Web Development</h3><span class="count">7</span>
-          </div>
-          <div class="chips-sm"><span>HTML</span><span>CSS</span><span>React</span><span>Bootstrap</span><span>Django</span><span>REST API</span><span>AWS</span></div>
-        </article>
-
-        <article class="skill-card">
-          <div class="skill-top">
-            <span class="skill-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
-            <h3>Databases</h3><span class="count">3</span>
-          </div>
-          <div class="chips-sm"><span>MySQL</span><span>MongoDB</span><span>Firebase</span></div>
-        </article>
-
-        <article class="skill-card">
-          <div class="skill-top">
-            <span class="skill-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-            <h3>Tools &amp; Platforms</h3><span class="count">18</span>
-          </div>
-          <div class="chips-sm"><span>Git &amp; GitHub</span><span>VS Code</span><span>Android Studio</span><span>NetBeans</span><span>Eclipse</span><span>Anaconda</span><span>Visual Paradigm</span><span>CI/CD</span><span>JUnit</span><span>Mockito</span><span>MATLAB</span><span>Blynk</span><span>Overleaf</span><span>Jira</span><span>Trello</span><span>Slack</span><span>Toggl</span><span>Microsoft Office Suite</span></div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ============ PROJECTS ============ -->
-    <section id="projects" class="wrap section">
-      <div class="section-head">
-        <h2>Academic Projects</h2>
-      </div>
-
-      <div class="projects">
-
-        <article class="project">
-          <div class="p-media">
-            <img src="images/projects/plant-classifier.jpg" alt="Plant Classification repository preview" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="p-initial" aria-hidden="true">PC</span>
-          </div>
-          <div class="p-body">
-            <h3>Plant Classification</h3>
-            <div class="tags"><span>Python</span><span>scikit-learn</span><span>scikit-image</span><span>NumPy</span><span>pandas</span><span>matplotlib</span></div>
-            <p>Built a machine-learning pipeline to classify 18 plant types using HOG features and SGD/SVM classifiers, reaching 80% accuracy through feature extraction and model tuning.</p>
-            <a class="code-btn" href="https://github.com/IrtifaHaider/Plant-Classifier" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              Code
-            </a>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="p-media">
-            <img src="https://opengraph.githubassets.com/1/IrtifaHaider/Hybrid-Smart-Energy-Control-and-Redistribution-System-Using-IoT" alt="Hybrid Smart Energy System repository preview" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="p-initial" aria-hidden="true">HSE</span>
-          </div>
-          <div class="p-body">
-            <h3>Hybrid Smart Energy System (IoT)</h3>
-            <div class="tags"><span>C++</span><span>ESP32</span><span>Arduino IDE</span><span>Blynk</span></div>
-            <p>Designed a cost-effective IoT system that optimizes power distribution across solar, grid and battery sources, prioritizing critical loads to improve energy efficiency.</p>
-            <a class="code-btn" href="https://github.com/IrtifaHaider/Hybrid-Smart-Energy-Control-and-Redistribution-System-Using-IoT" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              Code
-            </a>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="p-media">
-            <img src="https://opengraph.githubassets.com/1/shanjida-alam/Smart-Living-Community" alt="LivSmart repository preview" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="p-initial" aria-hidden="true">LS</span>
-          </div>
-          <div class="p-body">
-            <h3>LivSmart: Smart Living Community App</h3>
-            <div class="tags"><span>Java</span><span>Firebase</span><span>MVVM</span><span>JUnit</span></div>
-            <p>Android app that streamlines residential services (service requests, payments, events and alerts), with a Firebase backend for dashboards, parking and amenities booking.</p>
-            <a class="code-btn" href="https://github.com/shanjida-alam/Smart-Living-Community" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              Code
-            </a>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="p-media">
-            <img src="images/projects/opendoor.jpg" alt="OpenDoor repository preview" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="p-initial" aria-hidden="true">OD</span>
-          </div>
-          <div class="p-body">
-            <h3>OpenDoor: Property Rental &amp; Purchase App</h3>
-            <div class="tags"><span>Java</span><span>Firebase</span><span>CircleCI</span><span>MVVM</span></div>
-            <p>Built an Android app that simplifies property rental and purchase through aggregated listings and filtering, with real-time alerts and a mortgage calculator.</p>
-            <a class="code-btn" href="https://github.com/OpenDoor-Find-Your-Perfect-Space/OpenDoorAndroidApp" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              Code
-            </a>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="p-media">
-            <img src="https://opengraph.githubassets.com/1/IrtifaHaider/Learn-and-Teach-Programming-Languages" alt="Learn and Teach Programming repository preview" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="p-initial" aria-hidden="true">LT</span>
-          </div>
-          <div class="p-body">
-            <h3>Learn and Teach Programming</h3>
-            <div class="tags"><span>C++</span></div>
-            <p>Developed a C++ learning platform with tutorials, code examples and lessons to support programming practice.</p>
-            <a class="code-btn" href="https://github.com/IrtifaHaider/Learn-and-Teach-Programming-Languages" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              Code
-            </a>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="p-media">
-            <img src="https://opengraph.githubassets.com/1/IrtifaHaider/XO-Calculator" alt="Criss Cross Game and Calculator repository preview" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="p-initial" aria-hidden="true">XO</span>
-          </div>
-          <div class="p-body">
-            <h3>Criss Cross Game &amp; Calculator</h3>
-            <div class="tags"><span>C</span></div>
-            <p>Built a two-player Tic-Tac-Toe game with an integrated calculator for basic arithmetic operations.</p>
-            <a class="code-btn" href="https://github.com/IrtifaHaider/XO-Calculator" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              Code
-            </a>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="p-media">
-            <img src="https://opengraph.githubassets.com/1/IrtifaHaider/JU_CSE_Alumni_Website_Web-Project" alt="JUCSE Alumni Website repository preview" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="p-initial" aria-hidden="true">JU</span>
-          </div>
-          <div class="p-body">
-            <h3>JUCSE Alumni Website</h3>
-            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Django</span><span>REST API</span><span>MongoDB</span><span>MVC</span></div>
-            <p>Built a community platform for Jahangirnagar University CSE alumni with event management and member directories, using a Django REST API backend and a React frontend.</p>
-            <a class="code-btn" href="https://github.com/IrtifaHaider/JU_CSE_Alumni_Website_Web-Project" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              Code
-            </a>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="p-media">
-            <img src="images/projects/ittraininghub.jpg" alt="IT Training Hub repository preview" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="p-initial" aria-hidden="true">IT</span>
-          </div>
-          <div class="p-body">
-            <h3>IT Training Hub</h3>
-            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span><span>MySQL</span><span>MVC</span></div>
-            <p>Developed a web platform for managing IT training courses, trainers and participants, using the Model–View–Controller (MVC) architecture for maintainability.</p>
-            <a class="code-btn" href="https://github.com/IrtifaHaider/ITTrainingHub" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              Code
-            </a>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ============ HONORS & AWARDS ============ -->
-    <section id="honors" class="wrap section">
-      <div class="section-head">
-        <h2>Honors &amp; Awards</h2>
-      </div>
-      <div class="awards">
-
-        <article class="award">
-          <span class="year">2025</span>
-          <div>
-            <h3>Registration Grant, BLP 2025</h3>
-            <p>Received a USD 200 grant covering the paper registration fee for the Second Bangla Language Processing Workshop (BLP), co-located with IJCNLP–AACL 2025.</p>
-          </div>
-        </article>
-
-        <article class="award">
-          <span class="year">2025</span>
-          <div>
-            <h3>International Conference</h3>
-            <p>Presented a paper at IJCNLP–AACL 2025 (14th International Joint Conference on Natural Language Processing and 4th Asia-Pacific Chapter of the ACL).</p>
-          </div>
-        </article>
-
-        <article class="award">
-          <span class="year">400+</span>
-          <div>
-            <h3>Competitive Programming</h3>
-            <p>Solved 400+ problems on <a href="https://codeforces.com/profile/Irtifa_CSE-29" target="_blank" rel="noopener">Codeforces</a>, <a href="https://atcoder.jp/users/Irtifa_CSE29" target="_blank" rel="noopener">AtCoder</a> and <a href="https://leetcode.com/u/haiderIr/" target="_blank" rel="noopener">LeetCode</a>.</p>
-          </div>
-        </article>
-
-        <article class="award">
-          <span class="year">2021</span>
-          <div>
-            <h3>ICPC</h3>
-            <p>Competed in the preliminary round of the International Collegiate Programming Contest (ICPC).</p>
-          </div>
-        </article>
-
-        <article class="award">
-          <span class="year">2021</span>
-          <div>
-            <h3>NCPC</h3>
-            <p>Participated in the preliminary round of the National Collegiate Programming Contest (NCPC).</p>
-          </div>
-        </article>
-
-        <article class="award">
-          <span class="year">2014 · 2017</span>
-          <div>
-            <h3>Merit Scholarships</h3>
-            <p>Government Board Merit Scholarships for JSC (2014) and SSC (2017).</p>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ============ CERTIFICATIONS ============ -->
-    <section id="certifications" class="wrap section">
-      <div class="section-head">
-        <h2>Certifications</h2>
-        <p>Click a certificate to open it</p>
-      </div>
-
-      <div class="certs">
-
-        <article class="cert">
-          <a class="cert-media" href="images/certificates/ijcnlp-aacl-2025.jpg" target="_blank" rel="noopener" aria-label="Open certificate: Certificate of Attendance, IJCNLP–AACL 2025">
-            <img src="images/certificates/ijcnlp-aacl-2025.jpg" alt="Certificate: Certificate of Attendance, IJCNLP–AACL 2025" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="cert-fallback">Add images/certificates/ijcnlp-aacl-2025.jpg</span>
-          </a>
-          <div class="cert-body">
-            <h3>Certificate of Attendance, IJCNLP–AACL 2025</h3>
-            <p>January 7, 2026</p>
-          </div>
-        </article>
-
-        <article class="cert">
-          <a class="cert-media" href="images/certificates/fcc-js-algorithms.png" target="_blank" rel="noopener" aria-label="Open certificate: Legacy JavaScript Algorithms and Data Structures">
-            <img src="images/certificates/fcc-js-algorithms.png" alt="Certificate: Legacy JavaScript Algorithms and Data Structures" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="cert-fallback">Add images/certificates/fcc-js-algorithms.png</span>
-          </a>
-          <div class="cert-body">
-            <h3>Legacy JavaScript Algorithms and Data Structures</h3>
-            <p>freeCodeCamp · August 2, 2023</p>
-          </div>
-        </article>
-
-        <article class="cert">
-          <a class="cert-media" href="images/certificates/fcc-responsive-web-design.png" target="_blank" rel="noopener" aria-label="Open certificate: Responsive Web Design">
-            <img src="images/certificates/fcc-responsive-web-design.png" alt="Certificate: Responsive Web Design" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="cert-fallback">Add images/certificates/fcc-responsive-web-design.png</span>
-          </a>
-          <div class="cert-body">
-            <h3>Responsive Web Design</h3>
-            <p>freeCodeCamp · July 10, 2023</p>
-          </div>
-        </article>
-
-        <article class="cert">
-          <a class="cert-media" href="images/certificates/dsa-bootcamp-cython-codecraft.jpg" target="_blank" rel="noopener" aria-label="Open certificate: Cython Codecraft: Data Structure &amp; Algorithm Bootcamp">
-            <img src="images/certificates/dsa-bootcamp-cython-codecraft.jpg" alt="Certificate: Cython Codecraft: Data Structure &amp; Algorithm Bootcamp" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="cert-fallback">Add images/certificates/dsa-bootcamp-cython-codecraft.jpg</span>
-          </a>
-          <div class="cert-body">
-            <h3>Cython Codecraft: Data Structure &amp; Algorithm Bootcamp</h3>
-            <p>bongoDev · 3-day bootcamp</p>
-          </div>
-        </article>
-
-        <article class="cert">
-          <a class="cert-media" href="images/certificates/learn-hack-web-bootcamp.jpg" target="_blank" rel="noopener" aria-label="Open certificate: Learn &amp; Hack Web Development Bootcamp">
-            <img src="images/certificates/learn-hack-web-bootcamp.jpg" alt="Certificate: Learn &amp; Hack Web Development Bootcamp" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="cert-fallback">Add images/certificates/learn-hack-web-bootcamp.jpg</span>
-          </a>
-          <div class="cert-body">
-            <h3>Learn &amp; Hack Web Development Bootcamp</h3>
-            <p>bongoDev · 2-week bootcamp</p>
-          </div>
-        </article>
-
-        <article class="cert">
-          <a class="cert-media" href="images/certificates/fe-exam-2024.jpg" target="_blank" rel="noopener" aria-label="Open certificate: Fundamental Information Technology Engineer (FE) Examination">
-            <img src="images/certificates/fe-exam-2024.jpg" alt="Certificate: Fundamental Information Technology Engineer (FE) Examination" loading="lazy" onerror="this.parentNode.classList.add('no-img'); this.remove();">
-            <span class="cert-fallback">Add images/certificates/fe-exam-2024.jpg</span>
-          </a>
-          <div class="cert-body">
-            <h3>Fundamental Information Technology Engineer (FE) Examination</h3>
-            <p>2024</p>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ============ VOLUNTEER ============ -->
-    <section id="volunteer" class="wrap section">
-      <div class="section-head">
-        <h2>Volunteer Experience</h2>
-      </div>
-      <div class="edu">
-
-        <article class="card">
-          <time>2023 – Present</time>
-          <h3><a href="https://www.descf.org/" target="_blank" rel="noopener">Deep Ecology and Snake Conservation Foundation</a></h3>
-          <p>Participate in environmental conservation initiatives, awareness campaigns and community outreach programs.</p>
-        </article>
-
-        <article class="card">
-          <time>2024</time>
-          <h3><a href="https://www.facebook.com/profile.php?id=61554271138065" target="_blank" rel="noopener">Event Support Staff, NCPC</a></h3>
-          <p>National Collegiate Programming Contest, Jahangirnagar University. Assisted with on-site logistics, venue management and communication with committees.</p>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section id="contact" class="wrap section">
-      <div class="section-head">
-        <h2>Contact</h2>
-        <p>I am happy to hear from prospective supervisors and collaborators</p>
-      </div>
-      <div class="contact">
-        <p><a class="btn primary" href="mailto:irtifa.stu2019@juniv.edu">irtifa.stu2019@juniv.edu</a></p>
-        <p class="small">Department of Computer Science and Engineering, Jahangirnagar University, Savar, Dhaka, Bangladesh</p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="wrap">
-      <span>&copy; <span id="year">2026</span> Irtifa Haider</span>
-      <a href="#top">Back to top</a>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+/* Hero stacks when there is not enough width for two columns */
+@media (max-width: 820px) {
+  .hero { grid-template-columns: 1fr; padding-top: 32px; }
+  .hero-text { padding-top: 0; }
+  .hero-photo { justify-self: start; align-items: flex-start; }
+}
+
+@media (max-width: 640px) {
+  .brand { font-size: 1.05rem; padding: 10px 6px 10px 12px; }
+  .section { padding-top: 44px; }
+  .rx-list { margin-left: 0; padding-left: 0; border-left: 0; }
+  .rx::before { display: none; }
+  .rx { padding: 18px; }
+  .card, .skill-card, .award { padding-left: 16px; padding-right: 16px; }
+  .pub-item a { margin-left: 0; margin-right: 8px; }
+}
+
+@media (max-width: 380px) {
+  .hero-photo .btn { font-size: .78rem; padding: 5px 8px; }
+  .award { flex-direction: column; gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .project, .cert, .brand::before, .brand::after { transition: none; }
+}
